@@ -1,0 +1,31 @@
+{
+  "name": "to_do_project",
+  "version": "1.0.0",
+  "description": "This project is going to hold and display to-do tasks for the user. It will have folders for the user to organize their to-do's into projects. The tasks will have the option to add a date, priority level, description, and subtasks.",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hsoren31/to_do_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hsoren31/to_do_project/issues"
+  },
+  "homepage": "https://github.com/Hsoren31/to_do_project#readme",
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.0",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
