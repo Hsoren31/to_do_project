@@ -1,19 +1,34 @@
-// make todos an object
-function Todo(title, description){
+const todoDiv = document.querySelector('.tasks');
+
+const todos = [];
+
+function TodoObj(title) {
     this.title = title;
-    this.description = description;
-};
+}
 
-function displayTodo(todoObj){
-    let todoSection = document.getElementById('todos');
-    let todoDiv = document.createElement('div');
-    let todoTitle = document.createElement('h2');
-    let todoDescription = document.createElement('p');
+function pushTodo (todo) {
+    todos.push(todo);
+    console.log(todos);
+}
 
-    todoTitle.textContent = todoObj.title;
-    todoDescription.textContent = todoObj.description;
-    todoDiv.append(todoTitle, todoDescription);
-    todoSection.append(todoDiv);
-};
+function renderTodo(){
 
-export { Todo, displayTodo };
+    todos.forEach((todo, i) => {
+        let currentTodoDiv = todoDiv.innerHTML;
+        todoDiv.innerHTMl = '';
+        let displayTodo = (
+            `<div class='task-${i}'>
+                <input
+                    type="checkbox"
+                    id='task-${i}'
+                />
+                <label for='task-${i}'>${todo}</label>
+            </div>`
+        );
+
+        let amendedTodoDiv = currentTodoDiv + displayTodo;
+        todoDiv.innerHTML = amendedTodoDiv;
+    });
+}
+
+export { TodoObj, pushTodo , renderTodo, todoDiv }

@@ -1,21 +1,14 @@
-import { Todo , displayTodo } from './todos.js';
+import { TodoObj, pushTodo , renderTodo, todoDiv } from './todos.js';
 
-//define html elements
-const newTask = document.querySelector('#new_task');
-const addTask = document.querySelector('#add_task');
-const formDialog = document.querySelector('#form_dialog');
+let newTaskBtn = document.querySelector('.create_new_task');
 
-newTask.addEventListener('click', () => {
-    formDialog.showModal();
-});
 
-addTask.addEventListener('click', (e) => {
+newTaskBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    let taskTitle = document.getElementById('title').value;
-    let taskDescription = document.getElementById('description').value;
-
-    let todo = new Todo(taskTitle, taskDescription);
-    console.log(todo);
-    displayTodo(todo);
-    formDialog.close();
+    let taskTitle = document.querySelector('.new_task').value;
+    new TodoObj(taskTitle);
+    pushTodo(taskTitle);
+    todoDiv.innerText = '';
+    renderTodo();
 });
+
