@@ -31,16 +31,32 @@
             <div class="tasks"></div>
             <div class="new-task-create">
                 <form action="">
-                <input
-                    type="text"
-                    class="new_task"
-                    placeholder="new task name"
-                />
-                <button class="create_new_task">
-                    New Task
-                </button>
-            </form>
-        </div>
+                    <fieldset>
+                        <legend>New Task</legend>
+                            <input
+                                type="text"
+                                class="new_task"
+                                placeholder="new task name"
+                                required
+                            />
+                            <label for="task_date">Due Date:</label>
+                            <input 
+                                type="date"
+                                name="task_date"
+                                id="date"
+                            />
+                            <select id="priority" name="priority">
+                                <option>High Priority</option>
+                                <option>Medium Priority</option>
+                                <option>Low Priority </option>
+                                <option>No Priority</option>
+                            </select>
+                            <button class="create_new_task">
+                                New Task
+                            </button>
+                    </fieldset>
+                </form>
+            </div>
 
         </div>
     </div>
