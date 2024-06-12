@@ -1,13 +1,18 @@
 const folderDiv = document.querySelector('#folders');
 
-const folders = [];
+const LOCAL_STORAGE_LIST_KEY = 'tasks.folders';
+let folders = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 
 function FolderObj(name) {
-   return { id: Date.now(), name: name}
+   return { id: Date.now(), name: name, tasks: []}
 };
 
 function pushToArray(array, item){
     array.push(item);
+}
+
+function saveFolders(){
+    localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(folders));
 }
 
 function renderFolders(){
@@ -21,6 +26,11 @@ function renderFolders(){
     });
 };
 
+function saveAndRender(){
+    saveFolders();
+    renderFolders();
+}
+
 function clearElement(element){
     while(element.firstChild){
         element.removeChild(element.firstChild);
@@ -32,8 +42,9 @@ function folderHandler(){
     if (folderName == null || folderName === '') return;
     let folder = new FolderObj(folderName);
     pushToArray(folders, folder);
-    renderFolders();
+    saveAndRender();
+    console.log(folders);
 };
 
 
-export { pushToArray, folderHandler }
+export { pushToArray, folderHandler, clearElement, saveAndRender }

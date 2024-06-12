@@ -1,16 +1,14 @@
-import { pushToArray } from "./lists";
+import { pushToArray, clearElement } from "./lists";
 
 const todoDiv = document.querySelector('.tasks');
 const todos = [];
 
 function TodoObj(title, date, priority) {
-    this.title = title;
-    this.date = date;
-    this.priority = priority;
-}
+    return {title: title, date: date, priority: priority};
+};
 
 function renderTodo(){
-    todoDiv.innerText = '';
+    clearElement(todoDiv);
     todos.forEach((todo, i) => {
         let currentTodoDiv = todoDiv.innerHTML;
         todoDiv.innerHTMl = '';
