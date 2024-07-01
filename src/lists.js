@@ -6,27 +6,24 @@ let tasksHeader = document.querySelector('.todo-list-header > h2');
 let folders = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
-function deleteFolder(){
-    folders = folders.filter((folder) => {
-        return folder.id === selectedListId ? false : true;
-    });
-    selectedListId = null;
-    tasksHeader.innerText = null;
-    saveAndRender();
-};
-
-function FolderObj(name) {
-   return { id: Date.now().toString(), name: name, tasks: []}
-};
-
 function pushToArray(array, item){
     array.push(item);
 }
 
-function saveFolders(){
-    localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(folders));
-    localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
-}
+function clearElement(element){
+    while(element.firstChild){
+        element.removeChild(element.firstChild);
+    };
+};
+
+function FolderObj(name) {
+    return { id: Date.now().toString(), name: name, tasks: []}
+ };
+
+ function TodoObj(title, date, priority) {
+    return { title: title, date: date, priority: priority };
+};
+
 
 function renderFolders(){
     clearElement(folderDiv);
@@ -44,15 +41,23 @@ function renderFolders(){
     });
 };
 
+function saveFolders(){
+    localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(folders));
+    localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
+}
+
 function saveAndRender(){
     saveFolders();
     renderFolders();
 }
 
-function clearElement(element){
-    while(element.firstChild){
-        element.removeChild(element.firstChild);
-    };
+function deleteFolder(){
+    folders = folders.filter((folder) => {
+        return folder.id === selectedListId ? false : true;
+    });
+    selectedListId = null;
+    tasksHeader.innerText = null;
+    saveAndRender();
 };
 
 function folderHandler(){  //handler for adding new list
@@ -69,10 +74,6 @@ function selectFolderHandler(e){
     };
     saveAndRender();
 }
-
-function TodoObj(title, date, priority) {
-    return { title: title, date: date, priority: priority };
-};
 
 function renderTodo() {
     clearElement(todoDiv);
