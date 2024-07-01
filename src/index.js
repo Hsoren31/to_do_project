@@ -1,10 +1,10 @@
-import { todoHandler } from './todos.js';
-import { folderHandler, saveAndRender, deleteFolder, selectFolderHandler } from './lists.js';
+import { folderDiv, folderHandler, saveAndRender, deleteFolder,
+    selectFolderHandler, todoHandler } from './lists.js';
 
 let newTaskBtn = document.querySelector('.create_new_task');
 let newFolderBtn = document.querySelector('.create_new_list');
 let deleteFolderBtn = document.querySelector('.delete_folder');
-let folderDiv = document.querySelector('#folders');
+
 
 saveAndRender();
 
@@ -23,6 +23,5 @@ deleteFolderBtn.addEventListener('click', () => {
 });
 
 folderDiv.addEventListener('click', (e) => {
-    console.log(e);
     selectFolderHandler(e);
 });
