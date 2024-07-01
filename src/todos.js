@@ -1,7 +1,6 @@
 import { pushToArray, clearElement } from "./lists";
 
 const todoDiv = document.querySelector('.tasks');
-const todos = [];
 
 function TodoObj(title, date, priority) {
     return {title: title, date: date, priority: priority};

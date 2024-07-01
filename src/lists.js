@@ -1,18 +1,20 @@
-const folderDiv = document.querySelector('#folders');
+let folderDiv = document.querySelector('#folders');
 let tasksHeader = document.querySelector('.todo-list-header > h2');
-console.log(tasksHeader);
 
 const LOCAL_STORAGE_LIST_KEY = 'tasks.folders';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
 let folders = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
-folderDiv.addEventListener('click', (e) => {
-    if (e.target.tagName.toLowerCase() === 'li'){
-        selectedListId = e.target.dataset.listId;
-        saveAndRender();
-    };
-});
+function deleteFolder(){
+    folders = folders.filter((folder) => {
+        return folder.id.toString() === selectedListId ? false : true;
+    });
+    console.log(folders);
+    selectedListId = null;
+    tasksHeader.innerText = null;
+    saveAndRender();
+};
 
 function FolderObj(name) {
    return { id: Date.now(), name: name, tasks: []}
@@ -59,7 +61,15 @@ function folderHandler(){
     let folder = new FolderObj(folderName);
     pushToArray(folders, folder);
     saveAndRender();
-    console.log(folders);
 };
 
-export { pushToArray, folderHandler, clearElement, saveAndRender }
+function selectFolderHandler(e){
+    if (e.target.tagName.toLowerCase() === 'li'){
+        selectedListId = e.target.dataset.listId;
+    };
+    saveAndRender();
+}
+
+export { pushToArray, folderHandler, clearElement, saveAndRender, deleteFolder,
+    selectFolderHandler
+}
