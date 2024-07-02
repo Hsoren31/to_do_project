@@ -1,3 +1,4 @@
+import './style.css';
 import { folderDiv, folderHandler, saveAndRender, deleteFolder,
     selectFolderHandler, todoHandler } from './lists.js';
 

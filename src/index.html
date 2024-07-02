@@ -9,7 +9,9 @@
     <header>
         <h1>TO-DO</h1>
     </header>
-    <div>
+    <main>
+    <div id="folder-container">
+        <h2>Folders</h2>
         <ul id="folders">
         </ul>
 
@@ -25,42 +27,44 @@
         </form>
         <button class="delete_folder">Delete Selected Folder</button>
     </div>
-    <div class="todo-list">
+    <div id="todo-container">
         <div class="todo-list-header">
             <h2></h2>
         </div>
         <div class="todo-body">
-            <div class="tasks"></div>
+            <div class="tasks">
+            </div>
             <div class="new-task-create">
                 <form action="">
                     <fieldset>
-                        <legend>New Task</legend>
-                            <input
-                                type="text"
-                                class="new_task"
-                                placeholder="new task name"
-                                required
-                            />
-                            <!-- <label for="task_date">Due Date:</label>
-                            <input 
-                                type="date"
-                                name="task_date"
-                                id="date"
-                            />
-                            <select id="priority" name="priority">
-                                <option>High Priority</option>
-                                <option>Medium Priority</option>
-                                <option>Low Priority </option>
-                                <option>No Priority</option>
-                            </select> -->
-                            <button class="create_new_task">
-                                New Task
-                            </button>
-                    </fieldset>
+                    <legend>New Task</legend>
+                        <input
+                            type="text"
+                            class="new_task"
+                            placeholder="new task name"
+                            required
+                        />
+                        <!-- <label for="task_date">Due Date:</label>
+                        <input 
+                            type="date"
+                            name="task_date"
+                            id="date"
+                        />
+                        <select id="priority" name="priority">
+                            <option>High Priority</option>
+                            <option>Medium Priority</option>
+                            <option>Low Priority </option>
+                            <option>No Priority</option>
+                        </select> -->
+                        <button class="create_new_task">
+                            New Task
+                        </button>
+                </fieldset>
                 </form>
             </div>
         </div>
     </div>
+    </main>
     <template id="task-template">
         <div class="task">
             <input type="checkbox"/>
