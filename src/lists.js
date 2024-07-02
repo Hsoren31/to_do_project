@@ -106,6 +106,7 @@ function renderTodo(selectedList) {
 
 function todoHandler() {
     let taskTitle = tasksNameInput.value;
+    if (taskTitle == null || taskTitle === '') return;
     // let taskDate = document.querySelector('#date').value;
     // let taskPriority = document.querySelector('#priority').value;
     console.log(taskTitle);

@@ -14,27 +14,31 @@
         <h2>Folders</h2>
         <ul id="folders">
         </ul>
-
-        <form action="">
-            <input
-                type="text"
-                class="new_list"
-                placeholder="new list name"
-            />
-            <button class="create_new_list">
-                New List
-            </button>
-        </form>
+        <dialog folder-form>
+            <form action="">
+                <input
+                    type="text"
+                    class="new_list"
+                    placeholder="new list name"
+                />
+                <button class="create_new_list">
+                    New List
+                </button>
+            </form>
+        </dialog>
+        <button class="open-form" open-folder-form>+</button>
         <button class="delete_folder">Delete Selected Folder</button>
     </div>
     <div id="todo-container">
         <div class="todo-list-header">
             <h2></h2>
+            <button class="open-form" open-task-form>+</button>
         </div>
+
         <div class="todo-body">
             <div class="tasks">
             </div>
-            <div class="new-task-create">
+            <dialog task-form>
                 <form action="">
                     <fieldset>
                     <legend>New Task</legend>
@@ -61,7 +65,7 @@
                         </button>
                 </fieldset>
                 </form>
-            </div>
+            </dialog>
         </div>
     </div>
     </main>

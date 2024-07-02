@@ -26,6 +26,7 @@ main {
     grid-template-rows: minmax(100px, auto);
     gap: 10px;
     padding: 5px;
+    min-height: 100vh;
 }
 
 #folder-container {
@@ -36,15 +37,37 @@ main {
     gap: 7px;
 }
 
+.todo-list-header {
+    display: flex;
+}
 
+.todo-list-header > button {
+    margin-left: auto;
+}
+
+.open-form {
+    font-size: 18px;
+    width: 30px;
+    padding: 3px;
+}
 
 .delete_folder {
     width: 125px;
-    align-self: flex-end;
     padding: 3px;
 }
 
 h2 {
     font-size: 24px;
     font-weight: bold;
+}
+
+dialog {
+    padding: 1em;
+    max-width: 50ch;
+    top: 20%;
+    left: 40%;
+}
+
+dialog::backdrop {
+    background: rgb(0 0 0 / .4);
 }

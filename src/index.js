@@ -5,18 +5,23 @@ import { folderDiv, folderHandler, saveAndRender, deleteFolder,
 let newTaskBtn = document.querySelector('.create_new_task');
 let newFolderBtn = document.querySelector('.create_new_list');
 let deleteFolderBtn = document.querySelector('.delete_folder');
-
+let openFolderForm = document.querySelector('[open-folder-form]');
+let folderForm = document.querySelector('[folder-form]');
+const openTaskForm = document.querySelector('[open-task-form]');
+const taskForm = document.querySelector('[task-form]');
 
 saveAndRender();
 
 newTaskBtn.addEventListener('click', (e) => {
     e.preventDefault();
     todoHandler();
+    taskForm.close();
 });
 
 newFolderBtn.addEventListener('click', (e) => {
     e.preventDefault();
     folderHandler();
+    folderForm.close();
 });
 
 deleteFolderBtn.addEventListener('click', () => {
@@ -25,4 +30,14 @@ deleteFolderBtn.addEventListener('click', () => {
 
 folderDiv.addEventListener('click', (e) => {
     selectFolderHandler(e);
+});
+
+openFolderForm.addEventListener('click', (e) => {
+    e.preventDefault();
+    folderForm.showModal();
+});
+
+openTaskForm.addEventListener('click', (e) => {
+    e.preventDefault();
+    taskForm.showModal();
 });
