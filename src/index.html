@@ -41,7 +41,7 @@
                                 placeholder="new task name"
                                 required
                             />
-                            <label for="task_date">Due Date:</label>
+                            <!-- <label for="task_date">Due Date:</label>
                             <input 
                                 type="date"
                                 name="task_date"
@@ -52,15 +52,22 @@
                                 <option>Medium Priority</option>
                                 <option>Low Priority </option>
                                 <option>No Priority</option>
-                            </select>
+                            </select> -->
                             <button class="create_new_task">
                                 New Task
                             </button>
                     </fieldset>
                 </form>
             </div>
-
         </div>
     </div>
+    <template id="task-template">
+        <div class="task">
+            <input type="checkbox"/>
+            <label>
+                <span></span>
+            </label>
+        </div>
+    </template>
 </body>
 </html>

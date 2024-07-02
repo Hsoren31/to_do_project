@@ -1,14 +1,12 @@
 const folderDiv = document.querySelector('#folders');
 const todoDiv = document.querySelector('.tasks');
+const taskTemplate = document.querySelector('#task-template');
+let tasksHeader = document.querySelector('.todo-list-header > h2');
+
 const LOCAL_STORAGE_LIST_KEY = 'tasks.folders';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
-let tasksHeader = document.querySelector('.todo-list-header > h2');
 let folders = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
-
-function pushToArray(array, item){
-    array.push(item);
-}
 
 function clearElement(element){
     while(element.firstChild){
@@ -20,13 +18,29 @@ function FolderObj(name) {
     return { id: Date.now().toString(), name: name, tasks: []}
  };
 
- function TodoObj(title, date, priority) {
-    return { title: title, date: date, priority: priority };
+ function TodoObj(name) {
+    return { id: Date.now().toString(), name: name, complete: false}
 };
 
+function render(){
+    clearElement(folderDiv);
+    renderFolders();
+
+    const selectedList = folders.find(folder => folder.id === selectedListId);
+    console.log(selectedList);
+    if(selectedList == null){
+        todoDiv.style.display = 'none';
+    } else {
+        todoDiv.style.display = '';
+        tasksHeader.innerText = selectedList.name;
+        //render tasks
+        clearElement(todoDiv);
+        renderTodo(selectedList);
+    }
+}
 
 function renderFolders(){
-    clearElement(folderDiv);
+    console.log(folders);
     folders.forEach((folder) =>{
         const folderElement = document.createElement('li');
         folderElement.dataset.listId = folder.id;
@@ -35,7 +49,6 @@ function renderFolders(){
         if(folder.id === selectedListId){
             folderElement.style.color = 'blue';
             folderElement.classList.add('selected-folder');
-            tasksHeader.innerText = folder.name;
         };
         folderDiv.appendChild(folderElement);
     });
@@ -48,7 +61,7 @@ function saveFolders(){
 
 function saveAndRender(){
     saveFolders();
-    renderFolders();
+    render();
 }
 
 function deleteFolder(){
@@ -64,7 +77,7 @@ function folderHandler(){  //handler for adding new list
     let folderName = document.querySelector('.new_list').value;
     if (folderName == null || folderName === '') return;
     let folder = new FolderObj(folderName);
-    pushToArray(folders, folder);
+    folders.push(folder);
     saveAndRender();
 };
 
@@ -75,38 +88,30 @@ function selectFolderHandler(e){
     saveAndRender();
 }
 
-function renderTodo() {
-    clearElement(todoDiv);
-    selectedListTasks.forEach((todo, i) => {
-        let currentTodoDiv = todoDiv.innerHTML;
-        todoDiv.innerHTMl = '';
-        let displayTodo = (
-            `<div class='task-${i}'>
-                <input
-                    type="checkbox"
-                    id='task-${i}'
-                />
-                <label for='task-${i}'>${todo.title}</label>
-                <p>${todo.date}</p>
-                <p>${todo.priority}</p>
-            </div>`
-        );
-
-        let amendedTodoDiv = currentTodoDiv + displayTodo;
-        todoDiv.innerHTML = amendedTodoDiv;
+function renderTodo(selectedList) {
+    selectedList.tasks.forEach(task => {
+        const taskElement = document.importNode(taskTemplate.content, true);
+        const checkbox = taskElement.querySelector('input');
+        checkbox.id = task.id;
+        checkbox.checked = task.complete;
+        const label = taskElement.querySelector('label');
+        label.htmlFor = task.id;
+        label.append(task.name);
+        todoDiv.appendChild(taskElement);
     });
 };
 
 function todoHandler() {
     let taskTitle = document.querySelector('.new_task').value;
-    let taskDate = document.querySelector('#date').value;
-    let taskPriority = document.querySelector('#priority').value;
-
-    let task = new TodoObj(taskTitle, taskDate, taskPriority);
-    pushToArray(selectedListTasks, task);
-    renderTodo();
+    // let taskDate = document.querySelector('#date').value;
+    // let taskPriority = document.querySelector('#priority').value;
+    console.log(taskTitle);
+    const task = new TodoObj(taskTitle);
+    const selectedList = folders.find(folder => folder.id === selectedListId);
+    selectedList.tasks.push(task);
+    saveAndRender();
 }
 
-export { pushToArray, folderHandler, clearElement, saveAndRender, deleteFolder,
+export { folderHandler, clearElement, saveAndRender, deleteFolder,
     selectFolderHandler, todoHandler, folderDiv
 }
