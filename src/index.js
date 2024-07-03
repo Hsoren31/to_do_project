@@ -9,6 +9,8 @@ let openFolderForm = document.querySelector('[open-folder-form]');
 let folderForm = document.querySelector('[folder-form]');
 const openTaskForm = document.querySelector('[open-task-form]');
 const taskForm = document.querySelector('[task-form]');
+const cancelButton = document.querySelectorAll('.cancel');
+console.log(cancelButton);
 
 saveAndRender();
 
@@ -41,3 +43,11 @@ openTaskForm.addEventListener('click', (e) => {
     e.preventDefault();
     taskForm.showModal();
 });
+
+cancelButton.forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        folderForm.close();
+        taskForm.close();
+    })
+})
