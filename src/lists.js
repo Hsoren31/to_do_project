@@ -4,6 +4,8 @@ const todoDiv = document.querySelector('.tasks');
 const taskTemplate = document.querySelector('#task-template');
 const tasksHeader = document.querySelector('.todo-list-header > h2');
 const tasksNameInput = document.querySelector('.new_task');
+const taskDateInput = document.querySelector('.input-date');
+const taskPriorityInput = document.querySelector('#priority');
 
 const LOCAL_STORAGE_LIST_KEY = 'tasks.folders';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
@@ -20,8 +22,9 @@ function FolderObj(name) {
     return { id: Date.now().toString(), name: name, tasks: []}
  };
 
- function TodoObj(name) {
-    return { id: Date.now().toString(), name: name, complete: false}
+ function TodoObj(name, date, priority) {
+    return { id: Date.now().toString(), complete: false,
+         name: name, date: date, priority: priority}
 };
 
 function render(){
@@ -100,6 +103,10 @@ function renderTodo(selectedList) {
         const label = taskElement.querySelector('label');
         label.htmlFor = task.id;
         label.append(task.name);
+        const dueDateElement = taskElement.querySelector('#due-date');
+        dueDateElement.innerText = task.date;
+        const priorityElement = taskElement.querySelector('#priority');
+        priorityElement.innerText = task.priority;
         todoDiv.appendChild(taskElement);
     });
 };
@@ -107,10 +114,10 @@ function renderTodo(selectedList) {
 function todoHandler() {
     let taskTitle = tasksNameInput.value;
     if (taskTitle == null || taskTitle === '') return;
-    // let taskDate = document.querySelector('#date').value;
-    // let taskPriority = document.querySelector('#priority').value;
-    console.log(taskTitle);
-    const task = new TodoObj(taskTitle);
+    let taskDate = taskDateInput.value;
+    let taskPriority = taskPriorityInput.value;
+    const task = new TodoObj(taskTitle, taskDate, taskPriority);
+
     const selectedList = folders.find(folder => folder.id === selectedListId);
     selectedList.tasks.push(task);
     saveAndRender();
