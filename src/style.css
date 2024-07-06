@@ -10,55 +10,20 @@
     font: inherit;
 }
 
+button,
+input,
+select {
+    font-family: inherit;
+}
+
 body {
     min-height: 100vh;
-}
-
-header {
-    font-size: 32px;
-    text-align: center;
-}
-
-main {
-    border: 1px solid black;
+    background-color: #587B7F;
+    color: rgb(25, 23, 22);
+    font-size: 1.125em;
     display: grid;
-    grid-template-columns: 1fr 6fr ;
-    grid-template-rows: minmax(100px, auto);
-    gap: 10px;
-    padding: 5px;
-    min-height: 100vh;
-}
-
-#folder-container {
-    border-right: 1px solid black;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-}
-
-.todo-list-header {
-    display: flex;
-}
-
-.todo-list-header > button {
-    margin-left: auto;
-}
-
-.open-form {
-    font-size: 18px;
-    width: 30px;
-    padding: 3px;
-}
-
-.delete_folder {
-    width: 125px;
-    padding: 3px;
-}
-
-h2 {
-    font-size: 24px;
-    font-weight: bold;
+    grid-template-columns: 20rem 1fr;
+    margin: 0 16rem;
 }
 
 dialog {
@@ -69,5 +34,98 @@ dialog {
 }
 
 dialog::backdrop {
-    background: rgb(0 0 0 / .4);
+    background: rgba(0 0 0 / .4);
+}
+
+input[type=text] {
+    min-height: 1.75em;
+}
+
+#task-form {
+    padding: 0.75em;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+
+    background-color: rgb(25, 23, 22);
+    color: rgb(224, 226, 219);
+
+    padding: 1em;
+}
+
+header,
+#tasks-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.25rem;
+}
+
+#folders {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+#folders > li {
+    padding: 0.3em 1em;
+}
+
+.selected-folder {
+    background-color: rgb(224, 226, 219);
+    color: rgb(25, 23, 22);
+    font-weight: bold;
+    border-radius: 1vw;
+}
+
+#folder-btns > button,
+.open-task-form {
+    border: none;
+    border-radius: 0.5vw;
+    padding: 0.6em 1em;
+    background-color: rgb(230, 175, 46);
+    color: rgb(25, 23, 22);
+    font-weight: bold;
+
+}
+
+#folder-btns {
+    display: flex;
+    gap: 1rem;
+    position: fixed;
+    bottom: 2rem;
+}
+
+#todo-container {
+    background-color: rgb(224, 226, 219);
+
+    display: grid;
+    grid-template-rows: 4rem 1fr;
+}
+
+#tasks-header {
+    padding: 1rem;    
+}
+
+.tasks {
+    display: grid;
+    gap: 2rem;
+    padding: 1rem 3rem;
+}
+
+.task {
+    display: flex;
+    gap: 1rem;
+}
+
+.open-task-form {
+    position: fixed;
+    bottom: 2rem;
+    right: 19rem;
 }

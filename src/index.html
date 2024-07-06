@@ -6,12 +6,11 @@
     <title>TO-DO Project</title>
 </head>
 <body>
+<section class="sidebar">
     <header>
         <h1>TO-DO</h1>
     </header>
-    <main>
     <div id="folder-container">
-        <h2>Folders</h2>
         <ul id="folders">
         </ul>
         <dialog folder-form>
@@ -21,57 +20,58 @@
                     class="new_list"
                     placeholder="new list name"
                 />
-                <button class="create_new_list">
+                <button class="create_new_list folder-form-btn">
                     New List
                 </button>
-                <button class="cancel">Cancel</button>
+                <button class="cancel folder-form-btn">Cancel</button>
             </form>
         </dialog>
-        <button class="open-form" open-folder-form>+</button>
-        <button class="delete_folder">Delete Selected Folder</button>
+        <section id="folder-btns">
+            <button class="open-folder-form" open-folder-form>+</button>
+            <button class="delete_folder">Delete Selected Folder</button>
+        </section>
     </div>
-    <div id="todo-container">
-        <div class="todo-list-header">
-            <h2></h2>
-            <button class="open-form" open-task-form>+</button>
+</section>
+<div id="todo-container">
+    <h2 id="tasks-header"></h2>
+    <div class="todo-body">
+        <div class="tasks">
         </div>
-
-        <div class="todo-body">
-            <div class="tasks">
-            </div>
-            <dialog task-form>
-                <form action="">
-                    <fieldset>
-                    <legend>New Task</legend>
-                        <input
-                            type="text"
-                            class="new_task"
-                            placeholder="new task name"
-                            required
-                        />
-                        <label for="task_date">Due Date:</label>
-                        <input 
-                            type="date"
-                            name="task_date"
-                            id="date"
-                            class="input-date"
-                        />
-                        <select id="priority" name="priority">
-                            <option>High Priority</option>
-                            <option>Medium Priority</option>
-                            <option>Low Priority </option>
-                            <option selected="selected">No Priority</option>
-                        </select>
-                        <button class="create_new_task">
-                            New Task
-                        </button>
-                        <button class="cancel">Cancel</button>
-                </fieldset>
-                </form>
-            </dialog>
-        </div>
+        <dialog task-form>
+            <form action="" >
+                <fieldset id="task-form">
+                <legend>New Task</legend>
+                    <label for="task_name">Task Name</label>
+                    <input
+                        type="text"
+                        class="new_task"
+                        id="task_name"
+                        placeholder="Task Name"
+                        required
+                    /><br>
+                    <label for="task_date">Due Date:</label>
+                    <input 
+                        type="date"
+                        name="task_date"
+                        id="date"
+                        class="input-date"
+                    />
+                    <select id="priority" name="priority">
+                        <option>High Priority</option>
+                        <option>Medium Priority</option>
+                        <option>Low Priority </option>
+                        <option selected="selected">No Priority</option>
+                    </select>
+                    <button class="create_new_task task-button">
+                        New Task
+                    </button>
+                    <button class="cancel task-button">Cancel</button>
+            </fieldset>
+            </form>
+        </dialog>
+        <button class="open-task-form" open-task-form>+</button>
     </div>
-    </main>
+</div>
     <template id="task-template">
         <div class="task">
             <input type="checkbox"/>

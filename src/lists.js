@@ -2,7 +2,7 @@ const folderDiv = document.querySelector('#folders');
 const folderInput = document.querySelector('.new_list');
 const todoDiv = document.querySelector('.tasks');
 const taskTemplate = document.querySelector('#task-template');
-const tasksHeader = document.querySelector('.todo-list-header > h2');
+const tasksHeader = document.querySelector('#tasks-header');
 const tasksNameInput = document.querySelector('.new_task');
 const taskDateInput = document.querySelector('.input-date');
 const taskPriorityInput = document.querySelector('#priority');
@@ -52,7 +52,6 @@ function renderFolders(){
         folderElement.classList.add('list-name');
         folderElement.innerText = folder.name;
         if(folder.id === selectedListId){
-            folderElement.style.color = 'blue';
             folderElement.classList.add('selected-folder');
         };
         folderDiv.appendChild(folderElement);
