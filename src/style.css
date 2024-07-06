@@ -21,6 +21,7 @@ body {
     background-color: #587B7F;
     color: rgb(25, 23, 22);
     font-size: 1.125em;
+    font-family: 'Montserrat', sans-serif;
     display: grid;
     grid-template-columns: 20rem 1fr;
     margin: 0 16rem;
@@ -63,7 +64,8 @@ ul {
 header,
 #tasks-header {
     text-align: center;
-    font-weight: bold;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 300;
     font-size: 2.25rem;
 }
 
@@ -91,8 +93,9 @@ header,
     padding: 0.6em 1em;
     background-color: rgb(230, 175, 46);
     color: rgb(25, 23, 22);
-    font-weight: bold;
-
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 1.25rem;
 }
 
 #folder-btns {
@@ -128,4 +131,14 @@ header,
     position: fixed;
     bottom: 2rem;
     right: 19rem;
+}
+
+.folder-form-btn,
+.task-button {
+    padding: 0.25rem 0.5rem;
+    margin-top: 1rem;
+    background-color: rgb(230, 175, 46);
+    color: rgb(25, 23, 22);
+    border: none;
+    border-radius: 0.5vw;
 }
