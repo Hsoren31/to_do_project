@@ -6,6 +6,7 @@ const tasksHeader = document.querySelector('#tasks-header');
 const tasksNameInput = document.querySelector('.new_task');
 const taskDateInput = document.querySelector('.input-date');
 const taskPriorityInput = document.querySelector('#priority');
+const taskPriorityDefault = document.querySelector('[selected]');
 
 const LOCAL_STORAGE_LIST_KEY = 'tasks.folders';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
@@ -120,6 +121,8 @@ function todoHandler() {
     selectedList.tasks.push(task);
     saveAndRender();
     tasksNameInput.value = null;
+    taskDateInput.value = null;
+    taskPriorityInput.value = taskPriorityDefault.value;
 }
 
 export { folderHandler, clearElement, saveAndRender, deleteFolder,
