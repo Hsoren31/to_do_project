@@ -32,7 +32,6 @@ function render(){
     renderFolders();
 
     const selectedList = folders.find(folder => folder.id === selectedListId);
-    console.log(selectedList);
     if(selectedList == null){
         todoDiv.style.display = 'none';
     } else {
@@ -45,7 +44,6 @@ function render(){
 }
 
 function renderFolders(){
-    console.log(folders);
     folders.forEach((folder) =>{
         const folderElement = document.createElement('li');
         folderElement.dataset.listId = folder.id;
@@ -77,11 +75,12 @@ function deleteFolder(){
     saveAndRender();
 };
 
-function folderHandler(){  //handler for adding new list
+function folderHandler(){
     let folderName = folderInput.value;
     if (folderName == null || folderName === '') return;
     let folder = new FolderObj(folderName);
     folders.push(folder);
+    selectedListId = folder.id;
     saveAndRender();
     folderInput.value = null;
 };

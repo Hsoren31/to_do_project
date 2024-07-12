@@ -10,7 +10,6 @@ let folderForm = document.querySelector('[folder-form]');
 const openTaskForm = document.querySelector('[open-task-form]');
 const taskForm = document.querySelector('[task-form]');
 const cancelButton = document.querySelectorAll('.cancel');
-console.log(cancelButton);
 
 saveAndRender();
 
