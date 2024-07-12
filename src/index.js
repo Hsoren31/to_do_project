@@ -1,6 +1,6 @@
 import './style.css';
 import { folderDiv, folderHandler, saveAndRender, deleteFolder,
-    selectFolderHandler, todoHandler } from './lists.js';
+    selectFolderHandler, todoHandler, checkedHandler } from './lists.js';
 
 let newTaskBtn = document.querySelector('.create_new_task');
 let newFolderBtn = document.querySelector('.create_new_list');
@@ -10,6 +10,7 @@ let folderForm = document.querySelector('[folder-form]');
 const openTaskForm = document.querySelector('[open-task-form]');
 const taskForm = document.querySelector('[task-form]');
 const cancelButton = document.querySelectorAll('.cancel');
+const taskDiv = document.querySelector('.tasks');
 
 saveAndRender();
 
@@ -49,4 +50,8 @@ cancelButton.forEach(button => {
         folderForm.close();
         taskForm.close();
     })
+})
+
+taskDiv.addEventListener('click', (e) => {
+    checkedHandler(e);
 })

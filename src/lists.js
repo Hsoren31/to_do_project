@@ -125,6 +125,16 @@ function todoHandler() {
     taskPriorityInput.value = taskPriorityDefault.value;
 }
 
+function checkedHandler(e){
+    if (e.target.tagName.toLowerCase() === 'input'){
+        const selectedList = folders.find(folder => folder.id === selectedListId);
+        const selectedTaskId = e.target.id;
+        const selectedTask = selectedList.tasks.find(task => task.id === selectedTaskId);
+        selectedTask.complete = e.target.checked;
+        saveFolders();
+    }
+}
+
 export { folderHandler, clearElement, saveAndRender, deleteFolder,
-    selectFolderHandler, todoHandler, folderDiv
+    selectFolderHandler, todoHandler, folderDiv, checkedHandler
 }
