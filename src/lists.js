@@ -1,4 +1,4 @@
-import { format, isDate } from "date-fns";
+import { format } from "date-fns";
 
 const listDiv = document.querySelector("#lists");
 const listInput = document.querySelector(".new_list");
@@ -60,7 +60,7 @@ function renderLists() {
     listElement.classList.add("list-name");
     listElement.innerText = list.name;
     if (list.id === selectedListId) {
-        listElement.classList.add("selected-list");
+      listElement.classList.add("selected-list");
     }
     listDiv.appendChild(listElement);
   });
@@ -149,17 +149,26 @@ function checkedHandler(e) {
       (task) => task.id === selectedTaskId
     );
     selectedTask.complete = e.target.checked;
-    saveFolders();
+    saveLists();
   }
 }
 
 function formatDate(date) {
-    const dateSeparated = Array.from(date);
-    const dateDay = dateSeparated.slice(8).join('');
-    const dateMonth = dateSeparated.slice(5, 7).join('');
-    const dateYear = dateSeparated.slice(0, 4).join('');
+  const dateSeparated = Array.from(date);
+  const dateDay = dateSeparated.slice(8).join("");
+  const dateMonth = dateSeparated.slice(5, 7).join("");
+  const dateYear = dateSeparated.slice(0, 4).join("");
 
-    return format(new Date(dateYear, dateMonth, dateDay), "MM/dd/yyyy");
+  return format(new Date(dateYear, dateMonth, dateDay), "MM/dd/yyyy");
+}
+
+function collaspeTaskHandler(e) {
+  const collaspeDiv = e.target.parentElement.children[2];
+  if (collaspeDiv.style.display === "") {
+    collaspeDiv.style.display = "block";
+  } else {
+    collaspeDiv.style.display = '';
+  }
 }
 
 export {
@@ -171,4 +180,5 @@ export {
   taskHandler,
   listDiv,
   checkedHandler,
+  collaspeTaskHandler,
 };

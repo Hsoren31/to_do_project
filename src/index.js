@@ -7,7 +7,10 @@ import {
   selectListHandler,
   taskHandler,
   checkedHandler,
+  collaspeTaskHandler,
 } from "./lists.js";
+
+saveAndRender();
 
 let newTaskBtn = document.querySelector(".create_new_task");
 let newListBtn = document.querySelector(".create_new_list");
@@ -18,8 +21,7 @@ const openTaskForm = document.querySelector("[open-task-form]");
 const taskForm = document.querySelector("[task-form]");
 const cancelButton = document.querySelectorAll(".cancel");
 const taskDiv = document.querySelector(".tasks");
-
-saveAndRender();
+const taskContainer = document.querySelector(".tasks");
 
 newTaskBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -61,4 +63,11 @@ cancelButton.forEach((button) => {
 
 taskDiv.addEventListener("click", (e) => {
   checkedHandler(e);
+});
+
+taskContainer.addEventListener("click", (e) => {
+  console.log(e.target);
+  if (e.target.matches(".fa-ellipsis")) {
+    collaspeTaskHandler(e);
+  }
 });

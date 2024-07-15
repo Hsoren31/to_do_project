@@ -146,3 +146,7 @@ header,
   border: none;
   border-radius: 0.5vw;
 }
+
+.collaspe {
+    display: none;
+}
