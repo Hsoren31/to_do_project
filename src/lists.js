@@ -7,6 +7,7 @@ const tasksNameInput = document.querySelector('.new_task');
 const taskDateInput = document.querySelector('.input-date');
 const taskPriorityInput = document.querySelector('#priority');
 const taskPriorityDefault = document.querySelector('[selected]');
+const taskDetailInput = document.querySelector('#task-details');
 
 const LOCAL_STORAGE_LIST_KEY = 'tasks.folders';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
@@ -23,9 +24,9 @@ function FolderObj(name) {
     return { id: Date.now().toString(), name: name, tasks: []}
  };
 
- function TodoObj(name, date, priority) {
+ function TodoObj(name, date, priority, detail) {
     return { id: Date.now().toString(), complete: false,
-         name: name, date: date, priority: priority}
+         name: name, date: date, priority: priority, detail: detail}
 };
 
 function render(){
@@ -104,8 +105,14 @@ function renderTodo(selectedList) {
         label.append(task.name);
         const dueDateElement = taskElement.querySelector('#due-date');
         dueDateElement.innerText = task.date;
+        console.log(task.date);
+        if (task.date == null || task.date === '') {
+            dueDateElement.innerText = 'No Date Assigned'
+        };
         const priorityElement = taskElement.querySelector('#priority');
         priorityElement.innerText = task.priority;
+        const detailElement = taskElement.querySelector('#detail');
+        detailElement.innerText = task.detail;
         todoDiv.appendChild(taskElement);
     });
 };
@@ -115,7 +122,8 @@ function todoHandler() {
     if (taskTitle == null || taskTitle === '') return;
     let taskDate = taskDateInput.value;
     let taskPriority = taskPriorityInput.value;
-    const task = new TodoObj(taskTitle, taskDate, taskPriority);
+    let taskDetails = taskDetailInput.value;
+    const task = new TodoObj(taskTitle, taskDate, taskPriority, taskDetails);
 
     const selectedList = folders.find(folder => folder.id === selectedListId);
     selectedList.tasks.push(task);
@@ -123,6 +131,7 @@ function todoHandler() {
     tasksNameInput.value = null;
     taskDateInput.value = null;
     taskPriorityInput.value = taskPriorityDefault.value;
+    taskDetailInput.value = null;
 }
 
 function checkedHandler(e){
