@@ -1,3 +1,5 @@
+import { format, isDate } from "date-fns";
+
 const listDiv = document.querySelector("#lists");
 const listInput = document.querySelector(".new_list");
 const taskDiv = document.querySelector(".tasks");
@@ -110,7 +112,7 @@ function renderTask(selectedList) {
     label.htmlFor = task.id;
     label.append(task.name);
     const dueDateElement = taskElement.querySelector("#due-date");
-    dueDateElement.innerText = task.date;
+    dueDateElement.innerText = formatDate(task.date);
     if (task.date == null || task.date === "") {
       dueDateElement.innerText = "No Date Assigned";
     }
@@ -149,6 +151,15 @@ function checkedHandler(e) {
     selectedTask.complete = e.target.checked;
     saveFolders();
   }
+}
+
+function formatDate(date) {
+    const dateSeparated = Array.from(date);
+    const dateDay = dateSeparated.slice(8).join('');
+    const dateMonth = dateSeparated.slice(5, 7).join('');
+    const dateYear = dateSeparated.slice(0, 4).join('');
+
+    return format(new Date(dateYear, dateMonth, dateDay), "MM/dd/yyyy");
 }
 
 export {
