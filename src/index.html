@@ -1,92 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TO-DO Project</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></head>
-<body>
-<section class="sidebar">
-    <header>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="sidebar">
+      <header>
         <h1>TO-DO</h1>
-    </header>
-    <div id="folder-container">
-        <ul id="folders">
-        </ul>
-        <dialog folder-form>
-            <form action="">
-                <input
-                    type="text"
-                    class="new_list"
-                    placeholder="New List Name"
-                /><br>
-                <button class="create_new_list folder-form-btn">
-                    New List
-                </button>
-                <button class="cancel folder-form-btn">Cancel</button>
-            </form>
+      </header>
+      <div id="list-container">
+        <ul id="lists"></ul>
+        <dialog list-form>
+          <form action="">
+            <input
+              type="text"
+              class="new_list"
+              placeholder="New List Name"
+            /><br />
+            <button class="create_new_list list-form-btn">New List</button>
+            <button class="cancel list-form-btn">Cancel</button>
+          </form>
         </dialog>
-        <section id="folder-btns">
-            <button class="open-folder-form" open-folder-form><i class="fa-regular fa-plus"></i></button>
-            <button class="delete_folder"><i class="fa-regular fa-trash-can"></i></button>
+        <section id="list-btns">
+          <button class="open-list-form" open-list-form>
+            <i class="fa-regular fa-plus"></i>
+          </button>
+          <button class="delete_list">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
         </section>
-    </div>
-</section>
-<div id="todo-container">
-    <h2 id="tasks-header"></h2>
-    <div class="todo-body">
-        <div class="tasks">
-        </div>
+      </div>
+    </section>
+    <div id="task-container">
+      <h2 id="tasks-header"></h2>
+      <div class="task-body">
+        <div class="tasks"></div>
         <dialog task-form>
-            <form action="" >
-                <fieldset id="task-form">
-                <legend>New Task</legend>
-                    <label for="task_name">Task Name</label>
-                    <input
-                        type="text"
-                        class="new_task"
-                        id="task_name"
-                        placeholder="Task Name"
-                        required
-                    /><br>
-                    <label for="task_date">Due Date:</label>
-                    <input 
-                        type="date"
-                        name="task_date"
-                        id="date"
-                        class="input-date"
-                    />
-                    <select id="priority" name="priority">
-                        <option>High Priority</option>
-                        <option>Medium Priority</option>
-                        <option>Low Priority </option>
-                        <option selected="selected">No Priority</option>
-                    </select>
-                    <br>
-                    <label for="task-details">Details:</label>
-                    <textarea id="task-details" name="details" rows="5"
-                        cols="33"></textarea>
-                    <button class="create_new_task task-button">
-                        New Task
-                    </button>
-                    <button class="cancel task-button">Cancel</button>
+          <form action="">
+            <fieldset id="task-form">
+              <legend>New Task</legend>
+              <label for="task_name">Task Name</label>
+              <input
+                type="text"
+                class="new_task"
+                id="task_name"
+                placeholder="Task Name"
+                required
+              /><br />
+              <label for="task_date">Due Date:</label>
+              <input
+                type="date"
+                name="task_date"
+                id="date"
+                class="input-date"
+              />
+              <select id="priority" name="priority">
+                <option>High Priority</option>
+                <option>Medium Priority</option>
+                <option>Low Priority</option>
+                <option selected="selected">No Priority</option>
+              </select>
+              <br />
+              <label for="task-details">Details:</label>
+              <textarea
+                id="task-details"
+                name="details"
+                rows="5"
+                cols="33"
+              ></textarea>
+              <button class="create_new_task task-button">New Task</button>
+              <button class="cancel task-button">Cancel</button>
             </fieldset>
-            </form>
+          </form>
         </dialog>
-        <button class="open-task-form" open-task-form><i class="fa-regular fa-plus"></i></button>
+        <button class="open-task-form" open-task-form>
+          <i class="fa-regular fa-plus"></i>
+        </button>
+      </div>
     </div>
-</div>
     <template id="task-template">
-        <div class="task">
-            <input id="task-name" type="checkbox"/>
-            <label for="task-name"></label>
-            <p id="due-date"></p>
-            <p id="priority"></p>
-            <p id="detail"></p>
-        </div>
+      <div class="task">
+        <input id="task-name" type="checkbox" />
+        <label for="task-name"></label>
+        <p id="due-date"></p>
+        <p id="priority"></p>
+        <p id="detail"></p>
+      </div>
     </template>
-</body>
+  </body>
 </html>

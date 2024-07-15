@@ -1,57 +1,64 @@
-import './style.css';
-import { folderDiv, folderHandler, saveAndRender, deleteFolder,
-    selectFolderHandler, todoHandler, checkedHandler } from './lists.js';
+import "./style.css";
+import {
+  listDiv,
+  listHandler,
+  saveAndRender,
+  deleteList,
+  selectListHandler,
+  taskHandler,
+  checkedHandler,
+} from "./lists.js";
 
-let newTaskBtn = document.querySelector('.create_new_task');
-let newFolderBtn = document.querySelector('.create_new_list');
-let deleteFolderBtn = document.querySelector('.delete_folder');
-let openFolderForm = document.querySelector('[open-folder-form]');
-let folderForm = document.querySelector('[folder-form]');
-const openTaskForm = document.querySelector('[open-task-form]');
-const taskForm = document.querySelector('[task-form]');
-const cancelButton = document.querySelectorAll('.cancel');
-const taskDiv = document.querySelector('.tasks');
+let newTaskBtn = document.querySelector(".create_new_task");
+let newListBtn = document.querySelector(".create_new_list");
+let deleteListBtn = document.querySelector(".delete_list");
+let openListForm = document.querySelector("[open-list-form]");
+let listForm = document.querySelector("[list-form]");
+const openTaskForm = document.querySelector("[open-task-form]");
+const taskForm = document.querySelector("[task-form]");
+const cancelButton = document.querySelectorAll(".cancel");
+const taskDiv = document.querySelector(".tasks");
 
 saveAndRender();
 
-newTaskBtn.addEventListener('click', (e) => {
+newTaskBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  taskHandler();
+  taskForm.close();
+});
+
+newListBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  listHandler();
+  listForm.close();
+});
+
+deleteListBtn.addEventListener("click", () => {
+  deleteList();
+});
+
+listDiv.addEventListener("click", (e) => {
+  selectListHandler(e);
+});
+
+openListForm.addEventListener("click", (e) => {
+  e.preventDefault();
+  listForm.showModal();
+});
+
+openTaskForm.addEventListener("click", (e) => {
+  e.preventDefault();
+  taskForm.showModal();
+});
+
+cancelButton.forEach((button) => {
+  button.addEventListener("click", (e) => {
     e.preventDefault();
-    todoHandler();
+    listForm.close();
     taskForm.close();
+  });
 });
 
-newFolderBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    folderHandler();
-    folderForm.close();
+taskDiv.addEventListener("click", (e) => {
+  checkedHandler(e);
 });
-
-deleteFolderBtn.addEventListener('click', () => {
-    deleteFolder();
-});
-
-folderDiv.addEventListener('click', (e) => {
-    selectFolderHandler(e);
-});
-
-openFolderForm.addEventListener('click', (e) => {
-    e.preventDefault();
-    folderForm.showModal();
-});
-
-openTaskForm.addEventListener('click', (e) => {
-    e.preventDefault();
-    taskForm.showModal();
-});
-
-cancelButton.forEach(button => {
-    button.addEventListener('click', (e) => {
-        e.preventDefault();
-        folderForm.close();
-        taskForm.close();
-    })
-})
-
-taskDiv.addEventListener('click', (e) => {
-    checkedHandler(e);
-})

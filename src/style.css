@@ -1,148 +1,148 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    font: inherit;
+  margin: 0;
+  padding: 0;
+  font: inherit;
 }
 
 button,
 input,
 select {
-    font-family: inherit;
+  font-family: inherit;
 }
 
 body {
-    min-height: 100vh;
-    background-color: #587B7F;
-    color: rgb(25, 23, 22);
-    font-size: 1.125em;
-    font-family: 'Montserrat', sans-serif;
-    display: grid;
-    grid-template-columns: 20rem 1fr;
-    margin: 0 16rem;
+  min-height: 100vh;
+  background-color: #587b7f;
+  color: rgb(25, 23, 22);
+  font-size: 1.125em;
+  font-family: "Montserrat", sans-serif;
+  display: grid;
+  grid-template-columns: 20rem 1fr;
+  margin: 0 16rem;
 }
 
 dialog {
-    padding: 1em;
-    max-width: 50ch;
-    top: 20%;
-    left: 40%;
+  padding: 1em;
+  max-width: 50ch;
+  top: 20%;
+  left: 40%;
 }
 
 dialog::backdrop {
-    background: rgba(0 0 0 / .4);
+  background: rgba(0 0 0 / 0.4);
 }
 
-input[type=text] {
-    min-height: 1.75em;
+input[type="text"] {
+  min-height: 1.75em;
 }
 
 input {
-    accent-color: rgb(230, 175, 46);
+  accent-color: rgb(230, 175, 46);
 }
 
 #task-form {
-    padding: 0.75em;
+  padding: 0.75em;
 }
 
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .sidebar {
-    position: sticky;
-    top: 0;
-    max-height: 100vh;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
 
-    background-color: rgb(25, 23, 22);
-    color: rgb(224, 226, 219);
+  background-color: rgb(25, 23, 22);
+  color: rgb(224, 226, 219);
 
-    padding: 1em;
+  padding: 1em;
 }
 
 header,
 #tasks-header {
-    text-align: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
-    font-size: 2.25rem;
+  text-align: center;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 300;
+  font-size: 2.25rem;
 }
 
-#folders {
-    display: grid;
-    gap: 1rem;
-    padding: 1rem;
+#lists {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
 }
 
-#folders > li {
-    padding: 0.3em 1em;
+#lists > li {
+  padding: 0.3em 1em;
 }
 
-.selected-folder {
-    background-color: rgb(224, 226, 219);
-    color: rgb(25, 23, 22);
-    font-weight: bold;
-    border-radius: 1vw;
+.selected-list{
+  background-color: rgb(224, 226, 219);
+  color: rgb(25, 23, 22);
+  font-weight: bold;
+  border-radius: 1vw;
 }
 
-#folder-btns > button,
+#list-btns > button,
 .open-task-form {
-    border: none;
-    border-radius: 0.5vw;
-    padding: 0.6em 1em;
-    background-color: rgb(230, 175, 46);
-    color: rgb(25, 23, 22);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 500;
-    font-size: 1.25rem;
+  border: none;
+  border-radius: 0.5vw;
+  padding: 0.6em 1em;
+  background-color: rgb(230, 175, 46);
+  color: rgb(25, 23, 22);
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
 }
 
-#folder-btns {
-    display: flex;
-    gap: 1rem;
-    position: fixed;
-    bottom: 2rem;
+#list-btns {
+  display: flex;
+  gap: 1rem;
+  position: fixed;
+  bottom: 2rem;
 }
 
-#todo-container {
-    background-color: rgb(224, 226, 219);
+#task-container {
+  background-color: rgb(224, 226, 219);
 
-    display: grid;
-    grid-template-rows: 4rem 1fr;
+  display: grid;
+  grid-template-rows: 4rem 1fr;
 }
 
 #tasks-header {
-    padding: 1rem;    
+  padding: 1rem;
 }
 
 .tasks {
-    display: grid;
-    gap: 2rem;
-    padding: 1rem 3rem;
+  display: grid;
+  gap: 2rem;
+  padding: 1rem 3rem;
 }
 
 .task {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .open-task-form {
-    position: fixed;
-    bottom: 2rem;
-    right: 19rem;
+  position: fixed;
+  bottom: 2rem;
+  right: 19rem;
 }
 
-.folder-form-btn,
+.list-form-btn,
 .task-button {
-    padding: 0.25rem 0.5rem;
-    margin-top: 1rem;
-    background-color: rgb(230, 175, 46);
-    color: rgb(25, 23, 22);
-    border: none;
-    border-radius: 0.5vw;
+  padding: 0.25rem 0.5rem;
+  margin-top: 1rem;
+  background-color: rgb(230, 175, 46);
+  color: rgb(25, 23, 22);
+  border: none;
+  border-radius: 0.5vw;
 }
