@@ -8,6 +8,7 @@ import {
   taskHandler,
   checkedHandler,
   collaspeTaskHandler,
+  deleteTask
 } from "./lists.js";
 
 saveAndRender();
@@ -69,5 +70,7 @@ taskContainer.addEventListener("click", (e) => {
   console.log(e.target);
   if (e.target.matches(".fa-ellipsis")) {
     collaspeTaskHandler(e);
+  } else if (e.target.matches(".fa-trash-can")){
+    deleteTask(e);
   }
 });

@@ -171,6 +171,17 @@ function collaspeTaskHandler(e) {
   }
 }
 
+
+function deleteTask(e){
+    const selectedTask = e.target.parentElement.firstElementChild.id;
+    const selectedList = lists.find((list) => list.id === selectedListId);
+    console.log(selectedList.tasks);
+    selectedList.tasks = selectedList.tasks.filter((task) => {
+        return task.id === selectedTask ? false : true;
+    });
+    saveAndRender();
+}
+
 export {
   listHandler,
   clearElement,
@@ -181,4 +192,5 @@ export {
   listDiv,
   checkedHandler,
   collaspeTaskHandler,
+  deleteTask
 };
