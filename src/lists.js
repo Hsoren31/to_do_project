@@ -5,6 +5,7 @@ const listInput = document.querySelector(".new_list");
 const taskDiv = document.querySelector(".tasks");
 const taskTemplate = document.querySelector("#task-template");
 const tasksHeader = document.querySelector("#tasks-header");
+const taskForm = document.querySelector('[task-form]');
 const tasksNameInput = document.querySelector(".new_task");
 const taskDateInput = document.querySelector(".input-date");
 const taskPriorityInput = document.querySelector("#priority");
@@ -13,8 +14,11 @@ const taskDetailInput = document.querySelector("#task-details");
 
 const LOCAL_STORAGE_LIST_KEY = "tasks.lists";
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
+const LOCAL_STORAGE_SELECTED_TASK_ID_KEY = "task.selectedTaskId";
+
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
+let selectedTaskId = localStorage.getItem(LOCAL_STORAGE_SELECTED_TASK_ID_KEY);
 
 function clearElement(element) {
   while (element.firstChild) {
@@ -69,6 +73,7 @@ function renderLists() {
 function saveLists() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
+  localStorage.setItem(LOCAL_STORAGE_SELECTED_TASK_ID_KEY, selectedTaskId);
 }
 
 function saveAndRender() {
@@ -124,16 +129,25 @@ function renderTask(selectedList) {
   });
 }
 
-function taskHandler() {
+function taskHandler(e) {
   let taskTitle = tasksNameInput.value;
-  if (taskTitle == null || taskTitle === "") return;
-  let taskDate = taskDateInput.value;
-  let taskPriority = taskPriorityInput.value;
-  let taskDetails = taskDetailInput.value;
-  const task = new TaskObj(taskTitle, taskDate, taskPriority, taskDetails);
+    if (taskTitle == null || taskTitle === "") return;
+    let taskDate = taskDateInput.value;
+    let taskPriority = taskPriorityInput.value;
+    let taskDetails = taskDetailInput.value;
 
-  const selectedList = lists.find((list) => list.id === selectedListId);
-  selectedList.tasks.push(task);
+  if (e.target.classList[0] === "create_new_task"){
+    const task = new TaskObj(taskTitle, taskDate, taskPriority, taskDetails);
+    const selectedList = lists.find((list) => list.id === selectedListId);
+    selectedList.tasks.push(task);
+  } else if (e.target.classList[0] === "update_task"){
+    selectedTaskId.name = tasksNameInput.value;
+    selectedTaskId.date = taskDateInput.value;
+    selectedTaskId.priority = taskPriorityInput.value;
+    selectedTaskId.detail = taskDetailInput.value;
+
+  }
+
   saveAndRender();
   tasksNameInput.value = null;
   taskDateInput.value = null;
@@ -175,11 +189,27 @@ function collaspeTaskHandler(e) {
 function deleteTask(e){
     const selectedTask = e.target.parentElement.firstElementChild.id;
     const selectedList = lists.find((list) => list.id === selectedListId);
-    console.log(selectedList.tasks);
+    
     selectedList.tasks = selectedList.tasks.filter((task) => {
         return task.id === selectedTask ? false : true;
     });
     saveAndRender();
+}
+
+function editTask(e){
+  const id = e.target.parentElement.firstElementChild.id;
+  const selectedList = lists.find((list) => list.id === selectedListId);
+  const selectedTask = selectedList.tasks.find((task) => task.id === id);
+
+  console.log(selectedTask);
+  taskForm.showModal();
+  
+  tasksNameInput.value = selectedTask.name;
+  taskDateInput.value = selectedTask.date;
+  taskPriorityInput.value = selectedTask.priority;
+  taskDetailInput.value = selectedTask.detail;
+
+  selectedTaskId = selectedTask;
 }
 
 export {
@@ -192,5 +222,6 @@ export {
   listDiv,
   checkedHandler,
   collaspeTaskHandler,
-  deleteTask
+  deleteTask,
+  editTask
 };

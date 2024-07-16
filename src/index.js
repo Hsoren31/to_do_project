@@ -8,7 +8,8 @@ import {
   taskHandler,
   checkedHandler,
   collaspeTaskHandler,
-  deleteTask
+  deleteTask,
+  editTask
 } from "./lists.js";
 
 saveAndRender();
@@ -23,12 +24,7 @@ const taskForm = document.querySelector("[task-form]");
 const cancelButton = document.querySelectorAll(".cancel");
 const taskDiv = document.querySelector(".tasks");
 const taskContainer = document.querySelector(".tasks");
-
-newTaskBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  taskHandler();
-  taskForm.close();
-});
+const updateTaskBtn = document.querySelector(".update_task");
 
 newListBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -52,6 +48,14 @@ openListForm.addEventListener("click", (e) => {
 openTaskForm.addEventListener("click", (e) => {
   e.preventDefault();
   taskForm.showModal();
+  newTaskBtn.style.display = "block";
+  updateTaskBtn.style.display = "none";
+});
+
+newTaskBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  taskHandler(e);
+  taskForm.close();
 });
 
 cancelButton.forEach((button) => {
@@ -72,5 +76,16 @@ taskContainer.addEventListener("click", (e) => {
     collaspeTaskHandler(e);
   } else if (e.target.matches(".fa-trash-can")){
     deleteTask(e);
+  } else if (e.target.matches(".fa-pen-to-square")){
+    e.preventDefault();
+    editTask(e);
+    newTaskBtn.style.display = "none";
+    updateTaskBtn.style.display = "block";
   }
+});
+
+updateTaskBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  taskHandler(e);
+  taskForm.close();
 });
