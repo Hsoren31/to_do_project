@@ -110,6 +110,8 @@ function selectListHandler(e) {
 function renderTask(selectedList) {
   selectedList.tasks.forEach((task) => {
     const taskElement = document.importNode(taskTemplate.content, true);
+    const taskDivElement = taskElement.querySelector(".task");
+    taskDivElement.dataset.priority = task.priority;
     const checkbox = taskElement.querySelector("input");
     checkbox.id = task.id;
     checkbox.checked = task.complete;
@@ -121,9 +123,10 @@ function renderTask(selectedList) {
     if (task.date == null || task.date === "") {
       dueDateElement.innerText = "No Date Assigned";
     }
-    const priorityElement = taskElement.querySelector("#priority");
-    priorityElement.innerText = task.priority;
     const detailElement = taskElement.querySelector("#detail");
+    if (task.detail == null || task.detail === ""){
+      detailElement.innerText = "No Details";
+    }
     detailElement.innerText = task.detail;
     taskDiv.appendChild(taskElement);
   });
@@ -177,11 +180,11 @@ function formatDate(date) {
 }
 
 function collaspeTaskHandler(e) {
-  const collaspeDiv = e.target.parentElement.children[2];
-  if (collaspeDiv.style.display === "") {
+  const collaspeDiv = e.target.parentElement.nextElementSibling;
+  if (collaspeDiv.style.display === 'none') {
     collaspeDiv.style.display = "block";
   } else {
-    collaspeDiv.style.display = '';
+    collaspeDiv.style.display = 'none';
   }
 }
 

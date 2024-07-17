@@ -18,13 +18,11 @@ select {
 
 body {
   min-height: 100vh;
-  background-color: #587b7f;
   color: rgb(25, 23, 22);
   font-size: 1.125em;
   font-family: "Montserrat", sans-serif;
   display: grid;
   grid-template-columns: 20rem 1fr;
-  margin: 0 16rem;
 }
 
 dialog {
@@ -43,7 +41,7 @@ input[type="text"] {
 }
 
 input {
-  accent-color: rgb(230, 175, 46);
+  accent-color:  #5d2e46;
 }
 
 #task-form {
@@ -95,25 +93,28 @@ header,
   border: none;
   border-radius: 0.5vw;
   padding: 0.6em 1em;
-  background-color: rgb(230, 175, 46);
-  color: rgb(25, 23, 22);
-  font-family: "Barlow Condensed", sans-serif;
-  font-weight: 500;
+  background-color: #5d2e46;
+  color: rgb(224 226 219);
   font-size: 1.25rem;
 }
 
 #list-btns {
   display: flex;
   gap: 1rem;
-  position: fixed;
-  bottom: 2rem;
+  justify-content: center;
+}
+
+#list-container {
+  display: flex;
+  flex-direction: column;
+  gap:1rem;
 }
 
 #task-container {
-  background-color: rgb(224, 226, 219);
+  background-color: rgb(224, 226, 219 / 0.4);
 
   display: grid;
-  grid-template-rows: 4rem 1fr;
+  grid-template-rows: 5rem 1rem 1fr;
 }
 
 #tasks-header {
@@ -122,31 +123,95 @@ header,
 
 .tasks {
   display: grid;
-  gap: 2rem;
   padding: 1rem 3rem;
 }
 
 .task {
-  display: flex;
-  gap: 1rem;
+  padding: 0.75rem;
+  display: grid;
+  margin: 0.5rem 0;
 }
 
 .open-task-form {
   position: fixed;
-  bottom: 2rem;
-  right: 19rem;
+  bottom: 3rem;
+  right: 3rem;
 }
 
 .list-form-btn,
 .task-button {
   padding: 0.25rem 0.5rem;
   margin-top: 1rem;
-  background-color: rgb(230, 175, 46);
-  color: rgb(25, 23, 22);
+  background-color: #5d2e46;
+  color: rgb(224 226 219);
+  font-weight: 500;
   border: none;
   border-radius: 0.5vw;
 }
 
-.collaspe {
-    display: none;
+.line-1 {
+  display: flex;
+  gap: 1rem;
+}
+
+.line-2 {
+  display: grid;
+  margin-left: 3em;
+}
+
+#due-date {
+  margin-left: auto;
+}
+
+div[data-priority = "High Priority"] {
+  border-left: 7px solid #361c29;
+  background-color: rgba(54 28 41 / 0.2);
+}
+div[data-priority = "Medium Priority"] {
+  border-left: 7px solid #5d2e46;
+  background-color: rgba(93 46 70 / 0.2);
+
+}
+div[data-priority = "Low Priority"] {
+  border-left: 7px solid #ad6a6c;
+  background-color: rgba(173 106 108 / 0.2);
+
+}
+div[data-priority = "No Priority"] {
+  border-left: 7px solid #d0ada7;
+  background-color: rgba(208 173 167 / 0.2);
+}
+
+#priority-index {
+  display: grid;
+  grid-template-columns: repeat(4, 0.15fr 1fr);
+  padding: 0 3rem;
+  align-items: center;
+}
+
+#priority-index > div{
+  height: 1rem;
+  width: 1rem;
+  color: rgb(224, 226, 219);
+  text-align: center;
+  justify-self: center;
+}
+
+#priority-index > p {
+  justify-self: center;
+}
+
+#priority-index div:nth-child(1){
+  background-color:#361c29;
+  color: rgb(224, 226, 219);
+}
+#priority-index div:nth-child(3){
+  background-color: #5d2e46;
+  color: rgb(224, 226, 219);
+}
+#priority-index div:nth-child(5){
+  background-color: #ad6a6c;
+}
+#priority-index div:nth-child(7){
+  background-color: #d0ada7;
 }

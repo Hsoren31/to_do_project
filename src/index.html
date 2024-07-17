@@ -48,6 +48,16 @@
     </section>
     <div id="task-container">
       <h2 id="tasks-header"></h2>
+      <section id="priority-index">
+        <div></div>
+        <p>High Priority</p>
+        <div></div>
+        <p>Medium Priority</p>
+        <div></div>
+        <p>Low Priority</p>
+        <div></div>
+        <p>No Priority</p>
+      </section>
       <div class="task-body">
         <div class="tasks"></div>
         <dialog task-form>
@@ -96,16 +106,17 @@
     </div>
     <template id="task-template">
       <div class="task">
+        <div class="line-1">
         <input id="task-name" type="checkbox" />
         <label for="task-name"></label>
-        <div class="collaspe">
-          <p id="due-date"></p>
-          <p id="priority"></p>
-          <p id="detail"></p>
-        </div>
+        <p id="due-date"></p>
         <i class="fa-solid fa-ellipsis"></i>
         <i class="fa-regular fa-pen-to-square"></i>
         <i class="fa-regular fa-trash-can"></i>
+        </div>
+        <div class="collaspe line-2">
+          <p id="detail"></p>
+        </div>
       </div>
     </template>
   </body>
