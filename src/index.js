@@ -16,7 +16,6 @@ saveAndRender();
 
 let newTaskBtn = document.querySelector(".create_new_task");
 let newListBtn = document.querySelector(".create_new_list");
-let deleteListBtn = document.querySelector(".delete_list");
 let openListForm = document.querySelector("[open-list-form]");
 let listForm = document.querySelector("[list-form]");
 const openTaskForm = document.querySelector("[open-task-form]");
@@ -32,12 +31,13 @@ newListBtn.addEventListener("click", (e) => {
   listForm.close();
 });
 
-deleteListBtn.addEventListener("click", () => {
-  deleteList();
-});
-
 listDiv.addEventListener("click", (e) => {
-  selectListHandler(e);
+  console.log(e);
+  if (e.target.tagName.toLowerCase() === "li") {
+    selectListHandler(e);
+  } else if (e.target.classList[2] === "delete_list"){
+    deleteList(e);
+  }
 });
 
 openListForm.addEventListener("click", (e) => {

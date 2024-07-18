@@ -40,10 +40,6 @@ input[type="text"] {
   min-height: 1.75em;
 }
 
-input {
-  accent-color:  #5d2e46;
-}
-
 #task-form {
   padding: 0.75em;
 }
@@ -77,8 +73,20 @@ header,
   padding: 1rem;
 }
 
-#lists > li {
+#lists > div{
   padding: 0.3em 1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.list > .fa-trash-can{
+  margin-left: auto;
+  display: none;
+}
+
+.list:hover .fa-trash-can{
+  display: block;
 }
 
 .selected-list{
@@ -93,8 +101,8 @@ header,
   border: none;
   border-radius: 0.5vw;
   padding: 0.6em 1em;
-  background-color: #5d2e46;
-  color: rgb(224 226 219);
+  background-color: rgb(224 226 219);
+  color: rgb(25 23 22);
   font-size: 1.25rem;
 }
 
@@ -111,8 +119,8 @@ header,
 }
 
 #task-container {
-  background-color: rgb(224, 226, 219 / 0.4);
-
+  background-color: rgb(224, 226, 219);
+  padding: 0 10rem;
   display: grid;
   grid-template-rows: 5rem 1rem 1fr;
 }
@@ -123,7 +131,7 @@ header,
 
 .tasks {
   display: grid;
-  padding: 1rem 3rem;
+  padding: 1rem 0;
 }
 
 .task {
@@ -132,18 +140,34 @@ header,
   margin: 0.5rem 0;
 }
 
+.line-1 > i.fa-pen-to-square,
+.line-1 > i.fa-trash-can {
+  display:none;
+}
+
+.task:hover .fa-trash-can,
+.task:hover .fa-pen-to-square {
+  display: block;
+}
+
 .open-task-form {
   position: fixed;
-  bottom: 3rem;
+  bottom: 2rem;
   right: 3rem;
+  box-shadow: 2px 2px 3px rgba(0 0 0 / 0.7);
+  background-color: #c5c5c5;
+}
+
+.open-list-form {
+  width: 6rem;
 }
 
 .list-form-btn,
 .task-button {
   padding: 0.25rem 0.5rem;
   margin-top: 1rem;
-  background-color: #5d2e46;
-  color: rgb(224 226 219);
+  background-color: #c5c5c5;
+  color: rgb(25 23 22);
   font-weight: 500;
   border: none;
   border-radius: 0.5vw;
@@ -180,6 +204,19 @@ div[data-priority = "Low Priority"] {
 div[data-priority = "No Priority"] {
   border-left: 7px solid #d0ada7;
   background-color: rgba(208 173 167 / 0.2);
+}
+
+div[data-priority = "High Priority"] > div > input {
+  accent-color: #361c29;
+}
+div[data-priority = "Medium Priority"] > div > input {
+  accent-color: #5d2e46;
+}
+div[data-priority = "Low Priority"] > div > input {
+  accent-color: #ad6a6c;
+}
+div[data-priority = "No Priority"] > div > input {
+  accent-color: #d0ada7;
 }
 
 #priority-index {

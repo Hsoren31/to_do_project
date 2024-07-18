@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 
 const listDiv = document.querySelector("#lists");
+const listTemplate = document.querySelector("#list-template");
 const listInput = document.querySelector(".new_list");
 const taskDiv = document.querySelector(".tasks");
 const taskTemplate = document.querySelector("#task-template");
@@ -59,14 +60,16 @@ function render() {
 
 function renderLists() {
   lists.forEach((list) => {
-    const listElement = document.createElement("li");
-    listElement.dataset.listId = list.id;
-    listElement.classList.add("list-name");
-    listElement.innerText = list.name;
+    const listElement = document.importNode(listTemplate.content, true);
+    const listDivElement = listElement.querySelector("div");
+    const listLiElement = listElement.querySelector("li");
+    listLiElement.classList.add("list-name");
+    listLiElement.dataset.listId = list.id;
+    listLiElement.innerText = list.name;
     if (list.id === selectedListId) {
-      listElement.classList.add("selected-list");
+      listDivElement.classList.add("selected-list");
     }
-    listDiv.appendChild(listElement);
+    listDiv.append(listElement);
   });
 }
 
@@ -81,11 +84,12 @@ function saveAndRender() {
   render();
 }
 
-function deleteList() {
+function deleteList(e) {
+  const targetedList = (e.target.parentElement.children[0].dataset.listId);
+  console.log(targetedList);
   lists = lists.filter((list) => {
-    return list.id === selectedListId ? false : true;
+    return list.id === targetedList ? false : true;
   });
-  selectedListId = null;
   tasksHeader.innerText = null;
   saveAndRender();
 }
@@ -101,9 +105,8 @@ function listHandler() {
 }
 
 function selectListHandler(e) {
-  if (e.target.tagName.toLowerCase() === "li") {
-    selectedListId = e.target.dataset.listId;
-  }
+  selectedListId = e.target.dataset.listId;
+
   saveAndRender();
 }
 
